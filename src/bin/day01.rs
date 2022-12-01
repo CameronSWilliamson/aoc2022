@@ -1,11 +1,9 @@
-use std::vec;
-
 fn generate_list(input: &str) -> Vec<usize> {
     let mut elf_calories = Vec::new();
 
-    for grouping in input.split("\n\n").into_iter() {
+    for grouping in input.split("\n\n") {
         let mut count: usize = 0;
-        for calorie in grouping.split("\n").into_iter() {
+        for calorie in grouping.split('\n') {
             count += calorie.parse::<usize>().unwrap();
         }
         elf_calories.push(count);
