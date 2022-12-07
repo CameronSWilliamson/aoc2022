@@ -1,3 +1,4 @@
+#![allow(unused_variables)]
 fn solutiona(input: &str) -> usize {
     0
 }

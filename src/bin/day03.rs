@@ -5,26 +5,16 @@ struct RuckSack<'a> {
 }
 
 impl RuckSack<'_> {
-    fn new<'a>(items: Vec<&'a str>) -> RuckSack<'a> {
+    fn new(items: Vec<&'_ str>) -> RuckSack<'_> {
         RuckSack { items }
     }
 
     fn both(&self) -> char {
         let mut first_chars: Vec<char> = self.items[0].chars().collect();
         for item in &self.items {
-            first_chars = first_chars
-                .into_iter()
-                .filter(|val| item.contains(*val))
-                .collect();
+            first_chars.retain(|val| item.contains(*val));
         }
         first_chars[0]
-        // let second_chars: Vec<char> = self.second.chars().collect();
-        // self.first
-        //     .chars()
-        //     .into_iter()
-        //     .filter(|val| second_chars.contains(val))
-        //     .next()
-        //     .unwrap()
     }
 
     fn both_priority(&self) -> usize {

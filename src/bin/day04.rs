@@ -14,11 +14,9 @@ impl AssignmentPair {
                     .split('-')
                     .map(|num| match num.parse::<usize>() {
                         Ok(number) => number,
-                        Err(err) => panic!(
-                            "Unable to parse this: {} because of error: {}",
-                            num.clone(),
-                            err
-                        ),
+                        Err(err) => {
+                            panic!("Unable to parse this: {} because of error: {}", num, err)
+                        }
                     })
                     .collect()
             })
@@ -42,7 +40,7 @@ impl AssignmentPair {
 fn solutiona(input: &str) -> usize {
     input
         .split('\n')
-        .map(|val| AssignmentPair::new(val))
+        .map(AssignmentPair::new)
         .map(|val| val.full_range())
         .filter(|val| *val)
         .count()
@@ -51,7 +49,7 @@ fn solutiona(input: &str) -> usize {
 fn solutionb(input: &str) -> usize {
     input
         .split('\n')
-        .map(|val| AssignmentPair::new(val))
+        .map(AssignmentPair::new)
         .map(|val| val.any_overlap())
         .filter(|val| *val)
         .count()
